@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class Deadly : MonoBehaviour {
-	public GameObject respawner;
+	private RespawnController respawner;
 
 	// Use this for initialization
 	void Start () {
-	
+		respawner = GameObject.Find("Respawner").GetComponent<RespawnController>();
 	}
 	
 	// Update is called once per frame
@@ -16,7 +16,7 @@ public class Deadly : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.CompareTag("Player")) {
-			respawner.GetComponent<Die>().kill ();
+			respawner.kill();
 		}
 	}
 }

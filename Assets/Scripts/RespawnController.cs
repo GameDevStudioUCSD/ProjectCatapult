@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Die : MonoBehaviour {
+public class RespawnController : MonoBehaviour {
 	private bool isDead;
 	private double respawnTimer;
 	public double respawnTime;
@@ -18,7 +18,6 @@ public class Die : MonoBehaviour {
 	void Update () {
 		if (isDead) {
 			respawnTimer += Time.deltaTime;
-			Debug.Log (respawnTimer);
 			if (respawnTimer >= respawnTime) {
 				respawn ();
 			}
@@ -27,8 +26,8 @@ public class Die : MonoBehaviour {
 
 	public void kill() {
 		Destroy (currentPlayer.gameObject);
-		Debug.Log ("killed");
 		isDead = true;
+		respawnTimer = 0;
 	}
 
 	void respawn() {
