@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Put this script on anything that kills DrEric on contact.
+ * It must have a 2D Collider that is a trigger.
+ */
 public class Deadly : MonoBehaviour {
 	private RespawnController respawner;
 
