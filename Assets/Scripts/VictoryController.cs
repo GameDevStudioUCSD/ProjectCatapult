@@ -16,5 +16,11 @@ public class VictoryController : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision)
     {
         Instantiate(victoryScreen);
+        Invoke("nextLevel", 2.0f);
+    }
+
+    void nextLevel()
+    {
+        Application.LoadLevel(Application.loadedLevel + 1);
     }
 }
