@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Swith : MonoBehaviour {
+public class Switch : MonoBehaviour {
     /* used jointly with Switch.cs, place switch on a Switcher,
     * drag all GameObjects activated/deactivated by the switch
     * into the Switch componoent of the switcher, make sure they
