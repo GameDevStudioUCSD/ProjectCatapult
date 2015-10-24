@@ -22,11 +22,13 @@ public class FlingObject : MonoBehaviour {
     /** Set true to see debugging information */
     public bool isDebugging = false;
     private Vector2 initalVector, finalVector, deltaVector;
-    private Rigidbody2D rigidBody; 
+    private Rigidbody2D rigidBody;
+    public bool isReverseControl;
     /** Saves a reference to the object's 2D Rigidbody.\n
      *  Will throw a NullReferenceExcepetion if this method cannot find a 2D
      *  Rigidbody. */
 	void Start () {
+        isReverseControl = false;
         rigidBody = this.GetComponent<Rigidbody2D>();
         if (rigidBody == null)
         {
@@ -63,6 +65,12 @@ public class FlingObject : MonoBehaviour {
     {
         // Calculate the delta vector
         deltaVector = finalVector - initalVector;
+
+        if (isReverseControl)
+        {
+            deltaVector = -deltaVector;         //use jointly with ReverseControl method
+        }
+
         deltaVector *= impulseScalar;
         // Cap the x and y speeds by their max speeds
         if (deltaVector.x > maxXSpeed)
@@ -78,4 +86,21 @@ public class FlingObject : MonoBehaviour {
         AudioSource audio = GetComponent<AudioSource>();
         audio.Play();
     }
+
+
+    /*
+    * reverse the control by changing the boolean variable isReverseControl,
+    * which switches deltaVector to -deltaVector upon fling calculation,
+    * and achieves the effect of reversing the control
+    */
+    public void reverseControl()
+    {
+        isReverseControl = !isReverseControl;
+        if (isDebugging)
+        {
+            Debug.Log("Reverse-Control status changed to:" + isReverseControl);
+        }
+        
+    }
+
 }
